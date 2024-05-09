@@ -10,12 +10,12 @@ const M: usize = 4;
 
 fn main() -> Result<()> {
     let metrics = Metrics::new();
-    println!("{:?}", metrics.snapshot());
+    println!("{}", metrics);
 
-    for i in 1..N {
+    for i in 0..N {
         task_worker(i, metrics.clone())?;
     }
-    for _ in 1..M {
+    for _ in 0..M {
         request_worker(metrics.clone())?;
     }
     loop {
@@ -43,7 +43,7 @@ fn request_worker(metrics: Metrics) -> Result<()> {
             let mut rand = rand::thread_rng();
             thread::sleep(std::time::Duration::from_millis(rand.gen_range(50..800)));
             let page = rand.gen_range(1..256);
-            metrics.inc(format!("call.thread.worker.{}", page))?;
+            metrics.inc(format!("req.page.{}", page))?;
         }
         #[allow(unreachable_code)]
         Ok::<_, anyhow::Error>(())
