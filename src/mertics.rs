@@ -54,9 +54,9 @@ impl fmt::Display for Metrics {
         let data = self.data.read().map_err(|_e| fmt::Error)?;
 
         for (k, v) in data.iter() {
-            writeln!(f, "{}: {}\n", k, v)?;
+            #[allow(clippy::write_with_newline)]
+            write!(f, "{}: {}\n", k, v)?;
         }
-
         Ok(())
     }
 }
