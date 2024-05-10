@@ -1,8 +1,9 @@
 mod matrix;
-mod mertics;
 mod vector;
+
+mod metrics;
 
 pub use matrix::*;
 pub use vector::*;
 
-pub use mertics::*;
+pub use metrics::*;

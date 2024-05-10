@@ -9,11 +9,11 @@ use anyhow::Result;
 use dashmap::DashMap;
 
 #[derive(Debug, Clone, Default)]
-pub struct Metrics {
+pub struct CmapMetrics {
     data: Arc<DashMap<String, i64>>,
 }
 
-impl Metrics {
+impl CmapMetrics {
     pub fn new() -> Self {
         Self {
             data: Arc::new(DashMap::new()),
@@ -32,7 +32,7 @@ impl Metrics {
     }
 }
 
-impl fmt::Display for Metrics {
+impl fmt::Display for CmapMetrics {
     fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
         for entry in self.data.iter() {
             #[allow(clippy::write_with_newline)]
